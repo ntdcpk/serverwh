@@ -127,9 +127,9 @@ module.exports = function(app) {
         if (context) {
             button.context = context;
         }
-        if (payload) {
-            button.payload = JSON.stringify(payload)
-        }
+       // if (payload) {
+       //     button.payload = JSON.stringify(payload)
+       // }
         var messageData = {
             recipient: {
                 id: player
@@ -142,7 +142,7 @@ module.exports = function(app) {
                         elements: [
                         {
                             title: messageClient,
-							image_url:payload.ulrImage,
+							image_url:payload.ulrImage
                             buttons: [button]
                         }
                         ]
