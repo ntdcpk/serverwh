@@ -76,6 +76,9 @@ module.exports = function(app) {
             // In this example, the bot is just "echoing" the message received
             // immediately. In your game, you'll want to delay the bot messages
             // to remind the user to play 1, 3, 7 days after game play, for example.
+			//gui tin nhan lan dau
+			sendMessage(senderId, contextId, "" + payload.message1, "Play now!", payload);
+			
 			numberRepeat=0;
 			var rule = new schedule.RecurrenceRule();
 			rule.dayOfWeek = [0,1,6];
@@ -83,9 +86,21 @@ module.exports = function(app) {
 			rule.minute = 0;
 
 			var job = schedule.scheduleJob(rule, function(){
-			  sendMessage(senderId, contextId, "Message to game client: '" + payload.message + "'", "Play now!", payload);
 			  numberRepeat++;
-			  if(numberRepeat===4)
+			  numberRepeat++;
+			  if(numberRepeat===1)
+			  {
+				  sendMessage(senderId, contextId, "" + payload.message2, "Play now!", payload);
+			  }
+			  else if(numberRepeat===2)
+			  {
+				  sendMessage(senderId, contextId, "" + payload.message3, "Play now!", payload);
+			  }
+			  else if(numberRepeat===3)
+			  {
+				  sendMessage(senderId, contextId, "" + payload.message4, "Play now!", payload);
+			  }
+			  else if(numberRepeat===4)
 			  {
 				job.cancel();
 			  }
@@ -103,7 +118,7 @@ module.exports = function(app) {
     // cta (string): Button text
     // payload (object): Custom data that will be sent to game session
     // 
-    function sendMessage(player, context, message, cta, payload) {
+    function sendMessage(player, context, messageClient, cta, payload) {
         var button = {
             type: "game_play",
             title: cta
@@ -112,9 +127,9 @@ module.exports = function(app) {
         if (context) {
             button.context = context;
         }
-        if (payload) {
-            button.payload = JSON.stringify(payload)
-        }
+        //if (payload) {
+          //  button.payload = JSON.stringify(payload)
+        //}
         var messageData = {
             recipient: {
                 id: player
@@ -126,7 +141,7 @@ module.exports = function(app) {
                         template_type: "generic",
                         elements: [
                         {
-                            title: message,
+                            title: messageClient,
                             buttons: [button]
                         }
                         ]
