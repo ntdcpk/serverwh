@@ -7,7 +7,7 @@ module.exports = function(app) {
     //
     // GET /bot
     //
-    app.get('/bot', function(request, response) {
+    app.get('/webhook', function(request, response) {
         if (request.query['hub.mode'] === 'subscribe' && 
             request.query['hub.verify_token'] === process.env.BOT_VERIFY_TOKEN) {            
             console.log("Validating webhook");
