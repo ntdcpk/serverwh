@@ -142,7 +142,6 @@ module.exports = function(app) {
                         elements: [
                         {
                             title: messageClient,
-							image_url:"https://i.imgur.com/o5BQix4.png",
                             buttons: [button]
                         }
                         ]
