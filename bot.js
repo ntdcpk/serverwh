@@ -21,7 +21,7 @@ module.exports = function(app) {
     //
     // POST /bot
     //
-    app.post('/webhook', function(request, response) {
+    app.post('/bot', function(request, response) {
        var data = request.body;
        console.log('received bot webhook');
         // Make sure this is a page subscription
@@ -127,9 +127,9 @@ module.exports = function(app) {
         if (context) {
             button.context = context;
         }
-        //if (payload) {
-          //  button.payload = JSON.stringify(payload)
-        //}
+        if (payload) {
+            button.payload = JSON.stringify(payload)
+        }
         var messageData = {
             recipient: {
                 id: player
@@ -142,6 +142,7 @@ module.exports = function(app) {
                         elements: [
                         {
                             title: messageClient,
+							image_url:payload.ulrImage,
                             buttons: [button]
                         }
                         ]
