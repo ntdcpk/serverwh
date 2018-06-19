@@ -77,7 +77,7 @@ module.exports = function(app) {
             // immediately. In your game, you'll want to delay the bot messages
             // to remind the user to play 1, 3, 7 days after game play, for example.
 			//gui tin nhan lan dau
-			sendMessage(senderId, contextId, "" + payload.message1, "Play now!", payload);
+			sendMessage(senderId, contextId, "" + payload.message1, "Play now!", payload.ulrImage1,payload.subtitleIV);
 			
 			numberRepeat=0;
 			var rule = new schedule.RecurrenceRule();
@@ -90,15 +90,15 @@ module.exports = function(app) {
 			  numberRepeat++;
 			  if(numberRepeat===1)
 			  {
-				  sendMessage(senderId, contextId, "" + payload.message2, "Play now!", payload);
+				  sendMessage(senderId, contextId, "" + payload.message2, "Play now!", payload.ulrImage2,"");
 			  }
 			  else if(numberRepeat===2)
 			  {
-				  sendMessage(senderId, contextId, "" + payload.message3, "Play now!", payload);
+				  sendMessage(senderId, contextId, "" + payload.message3, "Play now!", payload.ulrImage3,"");
 			  }
 			  else if(numberRepeat===3)
 			  {
-				  sendMessage(senderId, contextId, "" + payload.message4, "Play now!", payload);
+				  sendMessage(senderId, contextId, "" + payload.message4, "Play now!", payload.ulrImage4,"");
 			  }
 			  else if(numberRepeat===4)
 			  {
@@ -118,7 +118,7 @@ module.exports = function(app) {
     // cta (string): Button text
     // payload (object): Custom data that will be sent to game session
     // 
-    function sendMessage(player, context, messageClient, cta, payload) {
+    function sendMessage(player, context, messageClient, cta, payloadUrlImage,subtitleIV) {
         var button = {
             type: "game_play",
             title: cta
@@ -127,9 +127,9 @@ module.exports = function(app) {
         if (context) {
             button.context = context;
         }
-        if (payload) {
-            button.payload = JSON.stringify(payload)
-        }
+       // if (payload) {
+       //    button.payload = JSON.stringify(payload)
+        //}
         var messageData = {
             recipient: {
                 id: player
@@ -142,7 +142,8 @@ module.exports = function(app) {
                         elements: [
                         {
                             title: messageClient,
-							image_url: payload.ulrImage,
+							image_url: payloadUrlImage,
+							subtitle:subtitleIV,
                             buttons: [button]
                         }
                         ]
