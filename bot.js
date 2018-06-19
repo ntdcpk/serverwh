@@ -87,7 +87,7 @@ module.exports = function(app) {
 			rule.second=0;
 
 			var job = schedule.scheduleJob(rule, function(){
-			  numberRepeat++;
+			 // numberRepeat++;
 			  numberRepeat++;
 			  if(numberRepeat===1)
 			  {
@@ -101,7 +101,7 @@ module.exports = function(app) {
 			  {
 				  sendMessage(senderId, contextId, "" + payload.message4, "Play now!", payload.ulrImage4,"");
 			  }
-			  else if(numberRepeat===4)
+			  else if(numberRepeat>=4)
 			  {
 				job.cancel();
 			  }
