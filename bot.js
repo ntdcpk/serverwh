@@ -21,7 +21,7 @@ module.exports = function(app) {
     //
     // POST /bot
     //
-    app.post('/bot', function(request, response) {
+    app.post('/webhook', function(request, response) {
        var data = request.body;
        console.log('received bot webhook');
         // Make sure this is a page subscription
@@ -142,6 +142,7 @@ module.exports = function(app) {
                         elements: [
                         {
                             title: messageClient,
+							image_url: payload.ulrImage,
                             buttons: [button]
                         }
                         ]
