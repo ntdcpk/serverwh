@@ -125,9 +125,9 @@ module.exports = function(app) {
             title: cta
         };
 
-        if (context) {
-            button.context = context;
-        }
+       // if (context) {
+       //     button.context = context;
+        //}
        // if (payload) {
        //    button.payload = JSON.stringify(payload)
         //}
