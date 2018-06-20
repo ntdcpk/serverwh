@@ -1,6 +1,6 @@
 var request = require('request');
 var schedule = require('node-schedule');
-var numberRepeat=0;
+
 
 module.exports = function(app) {
 
@@ -78,8 +78,8 @@ module.exports = function(app) {
             // to remind the user to play 1, 3, 7 days after game play, for example.
 			//gui tin nhan lan dau
 			sendMessage(senderId, contextId, "" + payload.message1, "Play now!", payload.ulrImage1,payload.subtitleIV);
-			
-			numberRepeat=0;
+			var numberRepeat=0;
+			//numberRepeat=0;
 			var rule = new schedule.RecurrenceRule();
 			//rule.dayOfWeek = [0,1,6];
 			//rule.hour = 10;
