@@ -81,10 +81,10 @@ module.exports = function(app) {
 			var numberRepeat=0;
 			//numberRepeat=0;
 			var rule = new schedule.RecurrenceRule();
-			//rule.dayOfWeek = [0,1,6];
-			//rule.hour = 10;
-			//rule.minute = 0;
-			rule.second=0;
+			rule.dayOfWeek = [0,1,6];
+			rule.hour = 10;
+			rule.minute = 0;
+			//rule.second=0;
 
 			var job = schedule.scheduleJob(rule, function(){
 			 // numberRepeat++;
